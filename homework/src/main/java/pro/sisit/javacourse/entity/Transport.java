@@ -4,13 +4,13 @@ public class Transport {
 
     private String name;
     private double volume;
-    private double cost;
+    private double price;
     private RouteType type;
 
-    public Transport(String name, double volume, double cost, RouteType type) {
+    public Transport(String name, double volume, double price, RouteType type) {
         this.name = name;
         this.volume = volume;
-        this.cost = cost;
+        this.price = price;
         this.type = type;
     }
 
@@ -22,8 +22,8 @@ public class Transport {
         return volume;
     }
 
-    public double getCost() {
-        return cost;
+    public double getPrice() {
+        return price;
     }
 
     public RouteType getType() {

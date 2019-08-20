@@ -17,11 +17,11 @@ import pro.sisit.javacourse.entity.Transport;
 
 public class TestPathFinder {
 
-    private Transport GAZelle = new Transport("Газель", 10, 100, RouteType.Road);
-    private Transport Plane = new Transport("Самолет", 100, 5000, RouteType.Air);
-    private Transport Tanker = new Transport("Танкер", 2000, 10000, RouteType.Sea);
-    private Transport Train = new Transport("Поезд", 2000, 1000, RouteType.Railway);
-    private Transport SemiTrailerTruck = new Transport("Фура", 50, 200, RouteType.Road);
+    private static Transport GAZelle = new Transport("Газель", 1, 1, RouteType.Road);
+    private static Transport Plane = new Transport("Самолет", 20, 50, RouteType.Air);
+    private static Transport Tanker = new Transport("Танкер", 200, 100, RouteType.Sea);
+    private static Transport Train = new Transport("Поезд", 100, 10, RouteType.Railway);
+    private static Transport SemiTrailerTruck = new Transport("Фура", 5, 2, RouteType.Road);
 
     private List<Transport> getAvailableTransport() {
         return Arrays.asList(GAZelle, Plane, Tanker, Train, SemiTrailerTruck);
@@ -40,9 +40,9 @@ public class TestPathFinder {
         @Override
         public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
             return Stream.of(
-                new Object[]{getApplesDelivery(), null},
-                new Object[]{getSmartphoneDelivery(), null},
-                new Object[]{getCarsDelivery(), null}
+                new Object[]{getApplesDelivery(), TestPathFinder.SemiTrailerTruck},
+                new Object[]{getSmartphoneDelivery(), TestPathFinder.Plane},
+                new Object[]{getCarsDelivery(), TestPathFinder.Train}
             ).map(Arguments::of);
         }
 
@@ -55,7 +55,7 @@ public class TestPathFinder {
                     new Route(RouteType.Road, 4000),
                     new Route(RouteType.Railway, 3000)
                 ),
-                4000);
+                100);
         }
 
         private Delivery getSmartphoneDelivery() {
@@ -66,15 +66,18 @@ public class TestPathFinder {
                     new Route(RouteType.Sea, 2500),
                     new Route(RouteType.Road, 4000)
                 ),
-                400
+                20
             );
         }
 
         private Delivery getApplesDelivery() {
             return new Delivery(
                 "Яблоки",
-                Arrays.asList(new Route(RouteType.Road, 1000.0), new Route(RouteType.Air, 700.0)),
-                100.0
+                Arrays.asList(
+                        new Route(RouteType.Road, 1000),
+                        new Route(RouteType.Air, 700)
+                ),
+                5
             );
         }
     }
