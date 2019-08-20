@@ -4,6 +4,6 @@ public enum ProductType {
     Dessert,
     IceCream,
     Candy,
-    Juice,
+    Chocolate,
     Soda
 }

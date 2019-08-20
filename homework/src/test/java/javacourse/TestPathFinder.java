@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import pro.sisit.javacourse.PathFinder;
-import pro.sisit.javacourse.entity.Delivery;
+import pro.sisit.javacourse.entity.DeliveryTask;
 import pro.sisit.javacourse.entity.Route;
 import pro.sisit.javacourse.entity.RouteType;
 import pro.sisit.javacourse.entity.Transport;
@@ -30,9 +30,9 @@ public class TestPathFinder {
 
     @ParameterizedTest
     @ArgumentsSource(TestGetOptimalTransportArguments.class)
-    void testGetOptimalTransport(Delivery delivery, Transport expected) {
+    void testGetOptimalTransport(DeliveryTask deliveryTask, Transport expected) {
         PathFinder pathFinder = new PathFinder();
-        Transport optimalTransport = pathFinder.getOptimalTransport(delivery, getAvailableTransport());
+        Transport optimalTransport = pathFinder.getOptimalTransport(deliveryTask, getAvailableTransport());
         Assertions.assertEquals(expected, optimalTransport);
     }
 
@@ -49,8 +49,8 @@ public class TestPathFinder {
             ).map(Arguments::of);
         }
 
-        private Delivery getKingKongDelivery() {
-            return new Delivery(
+        private DeliveryTask getKingKongDelivery() {
+            return new DeliveryTask(
                     "Кинг-Конг",
                     Arrays.asList(
                             new Route(RouteType.Air, 2000),
@@ -60,8 +60,8 @@ public class TestPathFinder {
             );
         }
 
-        private Delivery getBreadDelivery() {
-            return new Delivery(
+        private DeliveryTask getBreadDelivery() {
+            return new DeliveryTask(
                     "Хлеб",
                     Arrays.asList(
                             new Route(RouteType.Air, 50),
@@ -72,8 +72,8 @@ public class TestPathFinder {
             );
         }
 
-        private Delivery getCarsDelivery() {
-            return new Delivery(
+        private DeliveryTask getCarsDelivery() {
+            return new DeliveryTask(
                     "Автомобили",
                     Arrays.asList(
                             new Route(RouteType.Air, 2000),
@@ -84,8 +84,8 @@ public class TestPathFinder {
                     100);
         }
 
-        private Delivery getSmartphoneDelivery() {
-            return new Delivery(
+        private DeliveryTask getSmartphoneDelivery() {
+            return new DeliveryTask(
                     "Смартфоны",
                     Arrays.asList(
                             new Route(RouteType.Air, 2000),
@@ -96,8 +96,8 @@ public class TestPathFinder {
             );
         }
 
-        private Delivery getApplesDelivery() {
-            return new Delivery(
+        private DeliveryTask getApplesDelivery() {
+            return new DeliveryTask(
                     "Яблоки",
                     Arrays.asList(
                             new Route(RouteType.Road, 1000),

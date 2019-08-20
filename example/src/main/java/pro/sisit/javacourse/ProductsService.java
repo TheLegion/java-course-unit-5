@@ -1,6 +1,7 @@
 package pro.sisit.javacourse;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,40 +11,19 @@ public class ProductsService {
     }
 
     private static List<Product> getProducts() {
-        return new ArrayList<>();
-    }
-
-    List<ProductType> getUniqueProductTypes(List<Product> products) {
-        return products.stream()
-                .map(product -> product.getType())
-                .distinct()
-                .collect(Collectors.toList());
-    }
-
-    List<Product> filterProductsByType(
-            List<Product> products, ProductType type
-    ) {
-        return products.stream()
-                .filter(item -> item.getType() == type)
-                .collect(Collectors.toList());
-    }
-
-    double getProductPriceWithNDS(
-            List<Product> products, long productId
-    ) {
-        return products
-                .stream()
-                .filter(p -> p.getId() == productId)
-                .findFirst()
-                .map(this::getPriceWithNDS)
-                .orElseThrow(
-                        () -> new RuntimeException("Не найден такой товар")
-                );
-    }
-
-    private double getPriceWithNDS(Product product) {
-        double price = product.getPrice();
-        return price * 1.2;
+        return Arrays.asList(
+            new Product(1, "Саянита", ProductType.Candy, BigDecimal.valueOf(50), "Краскон"),
+            new Product(2, "Саянские", ProductType.Candy, BigDecimal.valueOf(70), "Краскон"),
+            new Product(3, "Красноярские столбы", ProductType.Candy, BigDecimal.valueOf(100), "Краскон"),
+            new Product(4, "Багира", ProductType.Candy, BigDecimal.valueOf(110), "Краскон"),
+            new Product(5, "Шоколад темный", ProductType.Chocolate, BigDecimal.valueOf(70), "Краскон"),
+            new Product(6, "Шоколад молочный", ProductType.Chocolate, BigDecimal.valueOf(70), "Краскон"),
+            new Product(7, "Дуэт в карамельном", ProductType.Chocolate, BigDecimal.valueOf(80), "Россия"),
+            new Product(8, "Дуэт в молочном", ProductType.Chocolate, BigDecimal.valueOf(80), "Россия"),
+            new Product(9, "Российский темный шоколад", ProductType.Chocolate, BigDecimal.valueOf(75), "Россия"),
+            new Product(10, "Российский темный шоколад", ProductType.Chocolate, BigDecimal.valueOf(75), "Россия"),
+            new Product(11, "Родные просторы", ProductType.Chocolate, BigDecimal.valueOf(120), "Россия")
+        );
     }
 
 }

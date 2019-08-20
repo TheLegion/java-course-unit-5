@@ -1,10 +1,25 @@
 package pro.sisit.javacourse.entity;
 
+/**
+ * Транспорт для доставки груза
+ */
 public class Transport {
 
+    /**
+     * Название
+     */
     private String name;
+    /**
+     * Допустимый объем груза
+     */
     private double volume;
+    /**
+     * Стоимость перевозки груза на единицу длины маршрута
+     */
     private double price;
+    /**
+     * Тип маршрута, по которому может перемещаться транспорт
+     */
     private RouteType type;
 
     public Transport(String name, double volume, double price, RouteType type) {

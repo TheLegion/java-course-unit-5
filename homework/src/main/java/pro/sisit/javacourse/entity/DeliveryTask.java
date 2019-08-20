@@ -2,15 +2,27 @@ package pro.sisit.javacourse.entity;
 
 import java.util.List;
 
-public class Delivery {
+/**
+ * Задача по доставке груза из одной точки в другую
+ */
+public class DeliveryTask {
 
+    /**
+     * Список доступных маршрутов для доставки
+     */
     private List<Route> routes;
 
+    /**
+     * Объем груза
+     */
     private double volume;
 
+    /**
+     * Название груза
+     */
     private String name;
 
-    public Delivery(String name, List<Route> routes, double volume) {
+    public DeliveryTask(String name, List<Route> routes, double volume) {
         this.name = name;
         this.routes = routes;
         this.volume = volume;

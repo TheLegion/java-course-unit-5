@@ -1,9 +1,18 @@
 package pro.sisit.javacourse.entity;
 
+/**
+ * Маршрут
+ */
 public class Route {
 
+    /**
+     * Тип маршрута
+     */
     private RouteType type;
 
+    /**
+     * Длина пути
+     */
     private double length;
 
     public Route(RouteType type, double length) {
