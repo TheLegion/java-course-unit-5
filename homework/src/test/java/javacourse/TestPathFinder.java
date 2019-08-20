@@ -1,8 +1,5 @@
 package javacourse;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,6 +11,10 @@ import pro.sisit.javacourse.entity.Delivery;
 import pro.sisit.javacourse.entity.Route;
 import pro.sisit.javacourse.entity.RouteType;
 import pro.sisit.javacourse.entity.Transport;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class TestPathFinder {
 
@@ -40,44 +41,69 @@ public class TestPathFinder {
         @Override
         public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
             return Stream.of(
-                new Object[]{getApplesDelivery(), TestPathFinder.SemiTrailerTruck},
-                new Object[]{getSmartphoneDelivery(), TestPathFinder.Plane},
-                new Object[]{getCarsDelivery(), TestPathFinder.Train}
+                    new Object[]{getApplesDelivery(), TestPathFinder.SemiTrailerTruck},
+                    new Object[]{getSmartphoneDelivery(), TestPathFinder.Plane},
+                    new Object[]{getCarsDelivery(), TestPathFinder.Train},
+                    new Object[]{getBreadDelivery(), TestPathFinder.GAZelle},
+                    new Object[]{getKingKongDelivery(), TestPathFinder.Tanker}
             ).map(Arguments::of);
+        }
+
+        private Delivery getKingKongDelivery() {
+            return new Delivery(
+                    "Кинг-Конг",
+                    Arrays.asList(
+                            new Route(RouteType.Air, 2000),
+                            new Route(RouteType.Sea, 2500)
+                    ),
+                    150
+            );
+        }
+
+        private Delivery getBreadDelivery() {
+            return new Delivery(
+                    "Хлеб",
+                    Arrays.asList(
+                            new Route(RouteType.Air, 50),
+                            new Route(RouteType.Road, 100),
+                            new Route(RouteType.Railway, 70)
+                    ),
+                    1
+            );
         }
 
         private Delivery getCarsDelivery() {
             return new Delivery(
-                "Автомобили",
-                Arrays.asList(
-                    new Route(RouteType.Air, 2000),
-                    new Route(RouteType.Sea, 2500),
-                    new Route(RouteType.Road, 4000),
-                    new Route(RouteType.Railway, 3000)
-                ),
-                100);
+                    "Автомобили",
+                    Arrays.asList(
+                            new Route(RouteType.Air, 2000),
+                            new Route(RouteType.Sea, 2500),
+                            new Route(RouteType.Road, 4000),
+                            new Route(RouteType.Railway, 3000)
+                    ),
+                    100);
         }
 
         private Delivery getSmartphoneDelivery() {
             return new Delivery(
-                "Смартфоны",
-                Arrays.asList(
-                    new Route(RouteType.Air, 2000),
-                    new Route(RouteType.Sea, 2500),
-                    new Route(RouteType.Road, 4000)
-                ),
-                20
+                    "Смартфоны",
+                    Arrays.asList(
+                            new Route(RouteType.Air, 2000),
+                            new Route(RouteType.Sea, 2500),
+                            new Route(RouteType.Road, 4000)
+                    ),
+                    20
             );
         }
 
         private Delivery getApplesDelivery() {
             return new Delivery(
-                "Яблоки",
-                Arrays.asList(
-                        new Route(RouteType.Road, 1000),
-                        new Route(RouteType.Air, 700)
-                ),
-                5
+                    "Яблоки",
+                    Arrays.asList(
+                            new Route(RouteType.Road, 1000),
+                            new Route(RouteType.Air, 700)
+                    ),
+                    5
             );
         }
     }

@@ -1,5 +1,6 @@
 package pro.sisit.javacourse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,32 +9,36 @@ public class ProductsService {
     public static void main(String[] args) {
     }
 
+    private static List<Product> getProducts() {
+        return new ArrayList<>();
+    }
+
     List<ProductType> getUniqueProductTypes(List<Product> products) {
         return products.stream()
-                       .map(product -> product.getType())
-                       .distinct()
-                       .collect(Collectors.toList());
+                .map(product -> product.getType())
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     List<Product> filterProductsByType(
-        List<Product> products, ProductType type
+            List<Product> products, ProductType type
     ) {
         return products.stream()
-                       .filter(item -> item.getType() == type)
-                       .collect(Collectors.toList());
+                .filter(item -> item.getType() == type)
+                .collect(Collectors.toList());
     }
 
     double getProductPriceWithNDS(
-        List<Product> products, long productId
+            List<Product> products, long productId
     ) {
         return products
-            .stream()
-            .filter(p -> p.getId() == productId)
-            .findFirst()
-            .map(this::getPriceWithNDS)
-            .orElseThrow(
-                () -> new RuntimeException("Не найден такой товар")
-            );
+                .stream()
+                .filter(p -> p.getId() == productId)
+                .findFirst()
+                .map(this::getPriceWithNDS)
+                .orElseThrow(
+                        () -> new RuntimeException("Не найден такой товар")
+                );
     }
 
     private double getPriceWithNDS(Product product) {
